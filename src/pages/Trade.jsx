@@ -469,6 +469,19 @@ const Trade = () => {
                 button[data-testid="connect-wallet"] div {
                   color: #FFFFFF;
                 }
+                button[data-testid="token-select"] {
+                  background-color: #3B82F6 !important;
+                  border-color: #3B82F6 !important;
+                }
+                button[data-testid="token-select"] div.type__TextWrapper-sc-16386l-0 {
+                  color: #FFFFFF !important;
+                }
+                button[data-testid="token-select"] div.hnSOPw {
+                  color: #FFFFFF !important;
+                }
+                button[data-testid="token-select"] svg {
+                  stroke: #FFFFFF !important;
+                }
               `}
               </style>
             </div>
