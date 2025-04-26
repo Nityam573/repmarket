@@ -1,18 +1,23 @@
 /* Ticking bar animation */
 @keyframes tickingBar {
   0% {
+    transform: scale(1);
     opacity: 1;
   }
   50% {
-    opacity: 0.6;
+    opacity: 0.9;
+    transform: scale(1.025);
+    height: 22px;
   }
   100% {
     opacity: 1;
+    transform: scale(1);
+    /* height: 10px; */
   }
 }
 
 .ticking-bar {
-  animation: tickingBar 1s infinite;
+  animation: tickingBar 1.75s infinite;
 }
 
 /* Table loading animation */

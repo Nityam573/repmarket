@@ -11,9 +11,9 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<MainLayout />}>
-          <Route index element={<About />} />
-          <Route path="about" element={<About />} />
+          <Route index element={<Trade />} />
           <Route path="trade" element={<Trade />} />
+          <Route path="about" element={<About />} />
           <Route path="launch" element={<Launch />} />
           <Route path="rewards" element={<Rewards />} />
           <Route path="ui-demo" element={<UIDemo />} />

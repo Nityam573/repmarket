@@ -112,10 +112,75 @@ export const NoResultsFound = () => {
   );
 };
 
+/**
+ * NotificationModal - A component that displays different types of notification modals
+ * @param {Object} props - Component props
+ * @param {string} props.type - Type of notification ('waiting', 'success', 'error')
+ * @param {string} props.title - Title of the notification
+ * @param {string} props.description - Description text
+ * @param {boolean} props.isOpen - Whether the modal is open
+ * @param {function} props.onClose - Close function
+ * @returns {JSX.Element} - Notification modal component
+ */
+export const NotificationModal = ({ type = 'waiting', title, description, isOpen = false, onClose }) => {
+  if (!isOpen) return null;
+  
+  const renderIcon = () => {
+    switch (type) {
+      case 'waiting':
+        return (
+          <div className="w-20 h-20 rounded-full bg-blue-100 flex items-center justify-center mb-4">
+            <div className="w-14 h-14 rounded-full border-4 border-blue-500 border-t-transparent animate-spin"></div>
+          </div>
+        );
+      case 'success':
+        return (
+          <div className="w-20 h-20 rounded-full bg-teal-500 flex items-center justify-center mb-4">
+            <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+        );
+      case 'error':
+        return (
+          <div className="w-20 h-20 rounded-full bg-red-500 flex items-center justify-center mb-4">
+            <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v12m0 0l-4-4m4 4l4-4" />
+            </svg>
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
+  
+  return (
+    <div className="fixed inset-0 flex items-center justify-center z-50">
+      <div className="absolute inset-0 bg-black bg-opacity-25" onClick={onClose}></div>
+      <div className="bg-white rounded-lg shadow-lg w-80 max-w-md p-6 relative z-10">
+        <button
+          onClick={onClose}
+          className="absolute top-3 right-3 text-gray-400 hover:text-gray-600"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+        <div className="flex flex-col items-center text-center">
+          {renderIcon()}
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">{title}</h3>
+          <p className="text-gray-500 text-sm">{description}</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export default {
   LoadingShimmer,
   TableLoadingShimmer,
   MobileLoadingShimmer,
   ProgressBar,
-  NoResultsFound
+  NoResultsFound,
+  NotificationModal
 }; 

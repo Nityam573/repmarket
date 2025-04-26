@@ -7,11 +7,11 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row items-center justify-between">
           <div>
             <p className="text-gray-600 text-sm">
-              <span className="font-bold">© 2024 Trademarket</span> All right Reserved
+              <span className="font-bold">© 2025 Trademarket</span> All right Reserved
             </p>
           </div>
           <div className="flex space-x-6 mt-2 md:mt-0">
-            <Link to="/privacy" className="text-gray-600 hover:text-gray-900 text-sm font-medium">Privacy Police</Link>
+            <Link to="/privacy" className="text-gray-600 hover:text-gray-900 text-sm font-medium">Privacy Policy</Link>
             <Link to="/terms" className="text-gray-600 hover:text-gray-900 text-sm font-medium">Terms of Services</Link>
           </div>
           <div className="flex space-x-4 mt-2 md:mt-0">

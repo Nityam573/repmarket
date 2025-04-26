@@ -5,15 +5,123 @@ import {
   TableLoadingShimmer, 
   MobileLoadingShimmer, 
   ProgressBar, 
-  NoResultsFound 
+  NoResultsFound,
+  NotificationModal
 } from '../components/UIComponents';
 
 const UIDemo = () => {
   const [showAlert, setShowAlert] = useState(true);
+  const [showNotification, setShowNotification] = useState(false);
+  const [notificationType, setNotificationType] = useState('waiting');
+
+  const openNotification = (type) => {
+    setNotificationType(type);
+    setShowNotification(true);
+  };
+
+  const notificationContent = {
+    waiting: {
+      title: "Waiting For Confirmation",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vehicula tellus leo, feugiat ultricies."
+    },
+    success: {
+      title: "Swap Success",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vehicula tellus leo."
+    },
+    error: {
+      title: "Lorem ipsum dolor",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vehicula tellus leo."
+    }
+  };
 
   return (
     <div className="bg-white rounded-lg shadow-sm overflow-hidden font-sans p-6">
       <h1 className="text-2xl font-bold mb-6">UI Components Demo</h1>
+      
+      <section className="mb-8">
+        <h2 className="text-xl font-semibold mb-4">Notifications</h2>
+        <div className="flex flex-wrap gap-4">
+          <button 
+            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg" 
+            onClick={() => openNotification('waiting')}
+          >
+            Show Waiting Notification
+          </button>
+          <button 
+            className="bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded-lg" 
+            onClick={() => openNotification('success')}
+          >
+            Show Success Notification
+          </button>
+          <button 
+            className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg" 
+            onClick={() => openNotification('error')}
+          >
+            Show Error Notification
+          </button>
+        </div>
+
+        {/* Notification Modal */}
+        <NotificationModal
+          type={notificationType}
+          title={notificationContent[notificationType].title}
+          description={notificationContent[notificationType].description}
+          isOpen={showNotification}
+          onClose={() => setShowNotification(false)}
+        />
+
+        {/* Static Preview */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+          <div className="bg-white rounded-lg shadow-md p-5 relative">
+            <button className="absolute top-3 right-3 text-gray-400 hover:text-gray-600">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <div className="flex flex-col items-center text-center">
+              <div className="w-20 h-20 rounded-full bg-blue-100 flex items-center justify-center mb-4">
+                <div className="w-14 h-14 rounded-full border-4 border-blue-500 border-t-transparent"></div>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Waiting For Confirmation</h3>
+              <p className="text-gray-500 text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+          </div>
+          
+          <div className="bg-white rounded-lg shadow-md p-5 relative">
+            <button className="absolute top-3 right-3 text-gray-400 hover:text-gray-600">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <div className="flex flex-col items-center text-center">
+              <div className="w-20 h-20 rounded-full bg-teal-500 flex items-center justify-center mb-4">
+                <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Swap Success</h3>
+              <p className="text-gray-500 text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+          </div>
+          
+          <div className="bg-white rounded-lg shadow-md p-5 relative">
+            <button className="absolute top-3 right-3 text-gray-400 hover:text-gray-600">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <div className="flex flex-col items-center text-center">
+              <div className="w-20 h-20 rounded-full bg-red-500 flex items-center justify-center mb-4">
+                <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v12m0 0l-4-4m4 4l4-4" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Lorem ipsum dolor</h3>
+              <p className="text-gray-500 text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+          </div>
+        </div>
+      </section>
       
       <section className="mb-8">
         <h2 className="text-xl font-semibold mb-4">Alerts</h2>
